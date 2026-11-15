@@ -56,7 +56,7 @@ adb shell input keyevent KEYCODE_HOME
 
 ## Personalizar a assinatura e o clima
 
-Copie [casa.properties.example](casa.properties.example) para **casa.properties**. Edite a assinatura, o nome da cidade e as coordenadas decimais. O Casa TV acrescenta um coração à assinatura, quando preenchida. O widget envia as coordenadas configuradas ao [Open-Meteo](https://open-meteo.com/en/docs), que fornece as condições atuais e a mínima e a máxima do dia. A configuração dispensa permissão de localização.
+Copie [casa.properties.example](casa.properties.example) para **casa.properties**. Salve o arquivo em UTF-8 e edite a assinatura, o nome da cidade e as coordenadas decimais. O Casa TV acrescenta um coração à assinatura, quando preenchida. O widget envia as coordenadas configuradas ao [Open-Meteo](https://open-meteo.com/en/docs), que fornece as condições atuais e a mínima e a máxima do dia. A configuração dispensa permissão de localização.
 
 ~~~shell
 adb shell mkdir -p /sdcard/Android/data/local.casa.tv/files
@@ -71,7 +71,8 @@ Use um vídeo que a TV consiga reproduzir. MP4 em H.264 é um ponto de partida. 
 
 ~~~shell
 adb shell mkdir -p /sdcard/Android/data/local.casa.tv/files
-adb push meu-video.mp4 /sdcard/Android/data/local.casa.tv/files/screensaver-video
+adb push meu-video.mp4 /sdcard/Android/data/local.casa.tv/files/screensaver-video.tmp
+adb shell mv /sdcard/Android/data/local.casa.tv/files/screensaver-video.tmp /sdcard/Android/data/local.casa.tv/files/screensaver-video
 ~~~
 
 ~~~shell

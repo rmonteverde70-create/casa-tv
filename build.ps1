@@ -11,6 +11,9 @@ if (!$SdkRoot) { throw 'Defina ANDROID_HOME ou informe -SdkRoot.' }
 if (!$JdkRoot) { throw 'Defina JAVA_HOME ou informe -JdkRoot.' }
 if (!$BuildTools) { $BuildTools = Join-Path $SdkRoot 'build-tools/35.0.0' }
 
+$BuildTools = (Resolve-Path -LiteralPath $BuildTools).Path
+$env:JAVA_HOME = (Resolve-Path -LiteralPath $JdkRoot).Path
+$env:Path = (Join-Path $env:JAVA_HOME 'bin') + [IO.Path]::PathSeparator + $env:Path
 $platform = Join-Path $SdkRoot 'platforms/android-35/android.jar'
 $javac = Join-Path $JdkRoot 'bin/javac.exe'
 $keytool = Join-Path $JdkRoot 'bin/keytool.exe'
