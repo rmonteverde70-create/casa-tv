@@ -6,6 +6,10 @@ O descanso de tela exibe uma imagem ou um vídeo que você copia para a TV. O v�
 
 A versão original foi testada numa Philips Google TV TA7. O APK exige Android 8.0 (API 26) ou superior. As opções de depuração sem fio, o botão Home e o descanso de tela variam conforme o modelo e o firmware. TVs Samsung com Tizen e LG com webOS usam outros sistemas.
 
+## Como fica na TV
+
+![Casa TV na Philips Google TV TA7 com fundo preto, relógio pixelado e fileira de aplicativos](docs/casa-tv-na-philips.png)
+
 ## Instalar na TV
 
 1. Baixe **Casa-TV.apk** em [Releases](https://github.com/rmonteverde70-create/casa-tv/releases/latest) e instale o [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) no computador.
