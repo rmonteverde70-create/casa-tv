@@ -1,6 +1,6 @@
-# Casa TV
+# Launch Philips
 
-O Casa TV é uma tela inicial para Android TV e Google TV. Use as setas do controle para navegar pelos apps instalados. A interface tem relógio pixelado, tema preto inspirado no [Flix Home](https://github.com/schadogamer127-sys/Flix-Home) e um widget de clima opcional. A tela inicial não tem anúncios nem recomendações.
+O Launch Philips é uma tela inicial para Android TV e Google TV. Use as setas do controle para navegar pelos apps instalados. A interface tem relógio pixelado, tema preto inspirado no [Flix Home](https://github.com/schadogamer127-sys/Flix-Home) e um widget de clima opcional. A tela inicial não tem anúncios nem recomendações.
 
 O descanso de tela exibe uma imagem ou um vídeo que você copia para a TV. O vídeo toca em loop, sem som e sem depender do YouTube.
 
@@ -8,11 +8,11 @@ A versão original foi testada numa Philips Google TV TA7. O APK exige Android 8
 
 ## Como fica na TV
 
-![Casa TV na Philips Google TV TA7 com fundo preto, relógio pixelado e fileira de aplicativos](docs/casa-tv-na-philips.png)
+![Launch Philips na Philips Google TV TA7 com fundo preto, relógio pixelado e fileira de aplicativos](docs/casa-tv-na-philips.png)
 
 ## Instalar na TV
 
-1. Baixe **Casa-TV.apk** em [Releases](https://github.com/rmonteverde70-create/casa-tv/releases/latest) e instale o [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) no computador.
+1. Baixe **Launch-Philips.apk** em [Releases](https://github.com/rmonteverde70-create/casa-tv/releases/latest) e instale o [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) no computador.
 2. Conecte a TV e o computador à mesma rede. Na TV, abra **Opções do desenvolvedor → Depuração sem fio**. Use as portas exibidas na TV, pois pareamento e conexão podem usar portas diferentes. [Guia oficial do ADB](https://developer.android.com/tools/adb#wireless)
 3. Execute os comandos abaixo no diretório do APK. Use o código mostrado pela TV para parear. Se houver vários dispositivos conectados, acrescente **-s IP_DA_TV:PORTA_DE_CONEXAO** logo após **adb**.
 
@@ -20,7 +20,7 @@ A versão original foi testada numa Philips Google TV TA7. O APK exige Android 8
 adb pair IP_DA_TV:PORTA_DE_PAREAMENTO
 adb connect IP_DA_TV:PORTA_DE_CONEXAO
 adb devices -l
-adb install -r Casa-TV.apk
+adb install -r Launch-Philips.apk
 adb shell am start -W -n local.casa.tv/.HomeActivity
 ~~~
 
@@ -28,7 +28,7 @@ Teste as setas, o botão **OK** e a abertura dos aplicativos antes de trocar o l
 
 ## Usar o botão Home
 
-Se a TV oferecer escolha de aplicativo de início, selecione **Casa TV**. Também é possível solicitar a troca pelo ADB.
+Se a TV oferecer escolha de aplicativo de início, selecione **Launch Philips**. Também é possível solicitar a troca pelo ADB.
 
 ~~~shell
 adb shell cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.HOME
@@ -49,7 +49,7 @@ adb shell cmd package set-home-activity local.casa.tv/.HomeActivity
 adb shell input keyevent KEYCODE_HOME
 ~~~
 
-Isso desativa o launcher e o assistente de configuração originais para o usuário principal. Para reverter, inclusive antes de desinstalar o Casa TV, use estes comandos.
+Isso desativa o launcher e o assistente de configuração originais para o usuário principal. Para reverter, inclusive antes de desinstalar o Launch Philips, use estes comandos.
 
 ~~~shell
 adb shell pm enable --user 0 com.google.android.apps.tv.launcherx
@@ -60,7 +60,7 @@ adb shell input keyevent KEYCODE_HOME
 
 ## Personalizar a assinatura e o clima
 
-Copie [casa.properties.example](casa.properties.example) para **casa.properties**. Salve o arquivo em UTF-8 e edite a assinatura, o nome da cidade e as coordenadas decimais. O Casa TV acrescenta um coração à assinatura, quando preenchida. O widget envia as coordenadas configuradas ao [Open-Meteo](https://open-meteo.com/en/docs), que fornece as condições atuais e a mínima e a máxima do dia. A configuração dispensa permissão de localização.
+Copie [casa.properties.example](casa.properties.example) para **casa.properties**. Salve o arquivo em UTF-8 e edite a assinatura, o nome da cidade e as coordenadas decimais. O Launch Philips acrescenta um coração à assinatura, quando preenchida. O widget envia as coordenadas configuradas ao [Open-Meteo](https://open-meteo.com/en/docs), que fornece as condições atuais e a mínima e a máxima do dia. A configuração dispensa permissão de localização.
 
 ~~~shell
 adb shell mkdir -p /sdcard/Android/data/local.casa.tv/files
@@ -83,7 +83,7 @@ adb shell mv /sdcard/Android/data/local.casa.tv/files/screensaver-video.tmp /sdc
 adb push minha-imagem.jpg /sdcard/Android/data/local.casa.tv/files/background.jpg
 ~~~
 
-Se a TV listar o **Casa TV** como protetor de tela, selecione-o nas configurações. Na Philips TA7, os comandos abaixo ativaram o descanso de tela após três minutos de inatividade. Anote os valores atuais primeiro. A opção **screen_off_timeout** também controla o tempo para apagar a tela no sistema.
+Se a TV listar o **Launch Philips** como protetor de tela, selecione-o nas configurações. Na Philips TA7, os comandos abaixo ativaram o descanso de tela após três minutos de inatividade. Anote os valores atuais primeiro. A opção **screen_off_timeout** também controla o tempo para apagar a tela no sistema.
 
 ~~~shell
 adb shell settings get secure screensaver_enabled
@@ -107,6 +107,6 @@ Instale PowerShell 7, um JDK 17 ou superior, Android SDK Platform 35 e Android S
 pwsh -File ./build.ps1
 ~~~
 
-O script gera **build/Casa-TV.apk** e uma chave local de assinatura na pasta **build**. Guarde a chave para atualizar instalações feitas com seus próprios APKs. O Android exige a mesma assinatura para instalar uma atualização por cima da versão anterior.
+O script gera **build/Launch-Philips.apk** e uma chave local de assinatura na pasta **build**. Guarde a chave para atualizar instalações feitas com seus próprios APKs. O Android exige a mesma assinatura para instalar uma atualização por cima da versão anterior.
 
 Os créditos e as licenças das marcas incluídas estão em [app/src/main/assets/marks](app/src/main/assets/marks).

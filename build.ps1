@@ -28,7 +28,7 @@ $dex = Join-Path $output 'dex'
 New-Item -ItemType Directory -Force $classes, $dex | Out-Null
 $unsigned = Join-Path $output 'unsigned.apk'
 $aligned = Join-Path $output 'aligned.apk'
-$apk = Join-Path $output 'Casa-TV.apk'
+$apk = Join-Path $output 'Launch-Philips.apk'
 $signing = Join-Path $output 'local-signing.jks'
 
 $sources = (Get-ChildItem (Join-Path $source 'java') -Filter '*.java' -Recurse).FullName
@@ -42,7 +42,7 @@ try { & "$BuildTools/aapt.exe" add $unsigned classes.dex } finally { Pop-Locatio
 
 if (!(Test-Path -LiteralPath $signing)) {
     $parameters = @('-genkeypair', '-keystore', $signing, '-storepass', 'android', '-keypass', 'android',
-        '-alias', 'casatv', '-keyalg', 'RSA', '-validity', '10000', '-dname', 'CN=Casa TV')
+        '-alias', 'casatv', '-keyalg', 'RSA', '-validity', '10000', '-dname', 'CN=Launch Philips')
     & $keytool @parameters
 }
 & "$BuildTools/apksigner.bat" sign --ks $signing --ks-pass pass:android --v4-signing-enabled false --out $apk $aligned
